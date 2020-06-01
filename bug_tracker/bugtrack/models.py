@@ -13,6 +13,6 @@ class BugTicket(models.Model):
 
 	bug_title = models.CharField(max_length = 30)
 	bug_description = models.TextField()
-	status = models.CharField(max_length = 2, choices = STATUS_CHOICES, default = O)
+	status = models.CharField(max_length = 2, choices = STATUS_CHOICES, default = STATUS_CHOICES[0])
 	date_created = models.DateField()
-	project = models.ForeignKey('Project')
+	project = models.ForeignKey('Project', on_delete = models.CASCADE)
