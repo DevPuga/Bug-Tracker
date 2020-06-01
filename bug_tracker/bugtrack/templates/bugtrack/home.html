@@ -1,5 +1,24 @@
 {% extends "bugtrack/base.html" %}
 
 {% block content %}
-
+<div class="container">
+	<div class="row">
+		<div class="col-md">
+			<div class="card-counter primary">
+				<i class="fa fa-code-fork"></i>
+        <span class="count-numbers">{{ data.projects.count }}</span>
+        <span class="count-name">Projects</span>
+        <a href="#" class="stretched-link"></a>
+			</div>
+		</div>
+		<div class="col-md">
+			<div class="card-counter danger">
+				<i class="fas fa-bug"></i>
+        <span class="count-numbers">{{ data.tickets.count }}</span>
+        <span class="count-name">Bugs</span>
+        <a href="#" class="stretched-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
