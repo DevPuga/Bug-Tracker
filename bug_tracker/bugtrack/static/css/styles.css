@@ -106,22 +106,19 @@ body {
 @media (min-width: 768px) {
   #sidebar-wrapper {
     margin-left: 0;
-  }
-
-  #page-content-wrapper {
-    min-width: 0;
-    width: 100%;
-  }
-
-  #wrapper.toggled #sidebar-wrapper {
-    margin-left: -15rem;
-  }
 }
 
+#page-content-wrapper {
+  min-width: 0;
+  width: 100%;
+}
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: -15rem;
+  }
+}
 .list-group-item {
   font-size: 20px;
 }
-
 .list-group-item, #sidebar-wrapper {
   color: white;
 }
