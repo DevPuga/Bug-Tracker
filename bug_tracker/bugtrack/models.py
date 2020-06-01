@@ -6,9 +6,9 @@ class Project(models.Model):
 
 class BugTicket(models.Model):
 	STATUS_CHOICES = [
-		('O' : 'Open'),
-		('IP' : 'In-Progress'),
-		('C' : 'Closed'),
+		('O', 'Open'),
+		('IP', 'In-Progress'),
+		('C', 'Closed'),
 	]
 
 	bug_title = models.CharField(max_length = 30)
