@@ -11,35 +11,18 @@
 		<script src="https://kit.fontawesome.com/322440a0bd.js" crossorigin="anonymous"></script>
   </head>
   <body>
-
-  	<div class="wrapper">
-  		<div class="sidebar">
-  			<div class="sidebar-header">
-  				<h3>Bug Tracker</h3>
-  			</div>
-  			<!-- TODO ADD HREF -->
-				<ul class="list-unstyled components">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">manage Role Assignments</a></li>
-					<li><a href="#">Manage Project Users</a></li>
-					<li><a href="#">Projects</a></li>
-					<li><a href="#">Tickets</a></li>
-					<li><a href="#">User Profile</a></li>
-				</ul>
-  		</div>
-  	</div>
-		<div class="content">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<div class="container-fluid">
-					<button class="btn btn-info" type="button" id="sidebarCollapse">
-						<i class="fas fa-align-left"></i>
-						<span>Toggle Sidebar</span>
-					</button>
-				</div>
-			</nav>
+		<nav class="navbar navbar-dark bg-dark">
+			<a href="" class="navbar-brand">Bug Tracker</a>
+		</nav>
+		<div class="container">
 			{% block content %}
 			{% endblock %}
 		</div>
+		<footer class="footer">
+      <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+      </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
