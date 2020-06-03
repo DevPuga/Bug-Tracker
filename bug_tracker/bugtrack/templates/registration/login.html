@@ -5,6 +5,6 @@
 	{% csrf_token %}
 	{{ form|crispy }}
 	<button type="submit" class="btn btn-primary">Login</button>
-	<p class="text-muted pt-3 d-inline pl-3"><a href="#">Don't have an account? Create one!</a></p>
+	<p class="text-muted pt-3 d-inline pl-3"><a href="/register/">Don't have an account? Create one!</a></p>
 </form>
 {% endblock %}

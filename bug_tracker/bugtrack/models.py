@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 class Project(models.Model):
 	project_name = models.CharField(max_length = 30)
@@ -17,5 +18,5 @@ class BugTicket(models.Model):
 	bug_title = models.CharField(max_length = 30)
 	bug_description = models.TextField()
 	status = models.CharField(max_length = 2, choices = STATUS_CHOICES, default = STATUS_CHOICES[0])
-	date_created = models.DateField()
+	date_created = models.DateField(default=datetime.date.today)
 	project = models.ForeignKey('Project', on_delete = models.CASCADE)

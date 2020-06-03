@@ -1,5 +1,5 @@
 {% extends "bugtrack/base.html" %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="container-fluid">
 	{% if user.is_authenticated %}
@@ -28,36 +28,18 @@
 	<div class="row">
 		<div class="col-md">
 			<h2 class="my-4">Submit New Project</h2>
-			<form action="" class="">
-				<div class="form-group">
-					<label for="projectName">Project Name</label>
-					<input type="text" class="form-control" id="projectName" placeholder="Project Name">
-				</div>
-				<div class="form-group">
-					<label for="projectDescription">Project Description</label>
-					<textarea class="form-control" id="projectDescription" cols="30" rows="11"></textarea>
-				</div>
+			<form action="/" class="form-group" method="POST">
+				{% csrf_token %}
+				{{ data.projectf|crispy }}
+				<input type="submit" class="btn btn-primary" name="project">
 			</form>
 		</div>
 		<div class="col-md">
 			<h2 class="my-4">Submit New Bug</h2>
-			<form action="">
-				<div class="form-group">
-					<label for="bugTitle">Bug Name</label>
-					<input type="text" id="bugTitle" class="form-control" placeholder="Bug Name">
-				</div>
-				<div class="form-group">
-					<label for="bugDescription">Bug Description</label>
-					<textarea class="form-control" id="bugDescription" cols="30" rows="5"></textarea>
-				</div>
-				<div class="form-group">
-					<label for="bugProject">Bug Project</label>
-					<select multiple class="form-control" id="bugProject">
-						{% for project in data.projects %}
-							<option>{{ project.project_name }}</option>
-						{% endfor %}
-					</select>
-				</div>
+			<form action="/" class="form-group" method="POST">
+				{% csrf_token %}
+				{{ data.bugf|crispy }}
+				<input type="submit" class="btn btn-primary" name="bug">
 			</form>
 		</div>
 	</div>
