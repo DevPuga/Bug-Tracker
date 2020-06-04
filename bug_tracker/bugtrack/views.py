@@ -9,38 +9,45 @@ def home(request):
 
 	project_form = ProjectForm()
 	bug_form = BugForm()
+	is_employee = False
 
-	if request.method == "POST":
-		if 'project' in request.POST:
-			project_form = ProjectForm(request.POST)
 
-			if project_form.is_valid():
-				name = project_form.cleaned_data["project_name"]
-				description = project_form.cleaned_data["project_description"]
+	if request.user.groups.filter(name__in=['Employee']).exists():
+		is_employee = True
+		if request.method == "POST":
+			if 'project' in request.POST:
+				project_form = ProjectForm(request.POST)
 
-				t = Project(project_name=name, project_description = description)
-				t.save()
+				if project_form.is_valid():
+					name = project_form.cleaned_data["project_name"]
+					description = project_form.cleaned_data["project_description"]
 
-				return redirect('/')
+					t = Project(project_name=name, project_description = description)
+					t.save()
 
-		if 'bug' in request.POST:
-			bug_form = BugForm(request.POST)
+					return redirect('/')
 
-			if bug_form.is_valid():
-				bug_name = bug_form.cleaned_data["bug_name"]
-				description = bug_form.cleaned_data["bug_description"]
-				bug_project = bug_form.cleaned_data["project"]
+			if 'bug' in request.POST:
+				bug_form = BugForm(request.POST)
 
-				t = BugTicket(bug_title=bug_name, bug_description=description, status = BugTicket.STATUS_CHOICES[0], project=bug_project)
-				t.save()
+				if bug_form.is_valid():
+					bug_name = bug_form.cleaned_data["bug_name"]
+					description = bug_form.cleaned_data["bug_description"]
+					bug_project = bug_form.cleaned_data["project"]
 
-				return redirect('/')
+					t = BugTicket(bug_title=bug_name, bug_description=description, status = BugTicket.STATUS_CHOICES[0], project=bug_project)
+					t.save()
+
+					return redirect('/')
+	else:
+		is_employee = False;
 
 	context = {
 		"tickets" : bug_tickets,
 		"projects" : projects,
 		"projectf" : project_form,
 		"bugf" : bug_form,
+		"is_employee" : is_employee,
 	}
 
 	return render(request, 'bugtrack/home.html', {'data' : context})

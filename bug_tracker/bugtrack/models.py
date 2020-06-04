@@ -8,6 +8,11 @@ class Project(models.Model):
 	def __str__(self):
 		return self.project_name
 
+	class Meta:
+		permissions = [
+			("view_form", "Can view Project form")
+		]
+
 class BugTicket(models.Model):
 	STATUS_CHOICES = [
 		('O', 'Open'),
@@ -20,3 +25,8 @@ class BugTicket(models.Model):
 	status = models.CharField(max_length = 2, choices = STATUS_CHOICES, default = STATUS_CHOICES[0])
 	date_created = models.DateField(default=datetime.date.today)
 	project = models.ForeignKey('Project', on_delete = models.CASCADE)
+
+	class Meta:
+		permissions = [
+			("view_form", "Can view BugTicket form")
+		]

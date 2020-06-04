@@ -5,7 +5,7 @@
 	{% if user.is_authenticated %}
 		<p class="h2 pb-2">Hello {{user.first_name}}</p>
 	{% else %}
-		<p class="h2 pb-2">Hello Guest</p>
+		<p class="h2 pb-2">Hello Guest, login to view full dashboard.</p>
 	{% endif %}
 	<div class="row">
 		<div class="col-md">
@@ -25,6 +25,31 @@
 			</div>
 		</div>
 	</div>
+	{% if user.is_authenticated and not data.is_employee%}
+	<div class="row">
+		<div class="col-md">
+			<h2 class="my-4">Submit New Project</h2>
+			<form action="/" class="form-group" method="POST">
+				<fieldset disabled="disabled">
+					{% csrf_token %}
+					{{ data.projectf|crispy }}
+					<p>You are not an employee. Login as an employee to submit this form</p>
+				</fieldset>
+			</form>
+		</div>
+		<div class="col-md">
+			<h2 class="my-4">Submit New Bug</h2>
+			<form action="/" class="form-group" method="POST">
+				<fieldset disabled="disabled">
+					{% csrf_token %}
+					{{ data.bugf|crispy }}
+					<p>You are not an employee. Login as an employee to submit this form</p>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	{% endif %}
+	{% if user.is_authenticated and data.is_employee %}
 	<div class="row">
 		<div class="col-md">
 			<h2 class="my-4">Submit New Project</h2>
@@ -32,6 +57,7 @@
 				{% csrf_token %}
 				{{ data.projectf|crispy }}
 				<input type="submit" class="btn btn-primary" name="project">
+
 			</form>
 		</div>
 		<div class="col-md">
@@ -43,5 +69,6 @@
 			</form>
 		</div>
 	</div>
+	{% endif %}
 </div>
 {% endblock %}
